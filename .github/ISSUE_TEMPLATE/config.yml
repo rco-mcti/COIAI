@@ -1,5 +1,17 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Pasta da Rede da COIAI 
-#   url: P:/COIAI/Gestão de Dados
-    about: Para informações oficiais do Departamento de Estatística da Universidade de Brasília. 
+  - name: "FormPD - MCTI"
+    url: https://formpd.mcti.gov.br/empresas/representante
+    about: Para preenchimento dos formulários de PD&I pelas empresas.
+
+  - name: "FormAnálise - MCTI"
+    url: https://mcti.gov.br/
+    about: Para acessar análise técnica dos formulários e emissão de pareceres.
+
+  - name: "Pasta da Rede COIAI"
+    url: "file://P:/COIAI/Gestão de Dados"
+    about: Acesso direto à pasta de rede para documentos de gestão e histórico.
+
+  - name: "Portal MCTI"
+    url: https://www.gov.br/mcti
+    about: Site oficial do Ministério da Ciência, Tecnologia e Inovação.
