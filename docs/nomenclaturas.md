@@ -1,6 +1,10 @@
 # Explicações das Siglas - SETEC Backlog
 
+> [!NOTE]
+> Este arquivo é uma visualização amigável. A "Fonte da Verdade" (source of truth) estruturada está no arquivo [nomenclaturas.yml](file:///c:/Users/cesar.castro/github/COIAI/docs/nomenclaturas.yml).
+
 Esta tabela apresenta as definições para os Temas (T), Épicos (E) e Features (F) identificados no backlog da SETEC.
+
 
 | Sigla | Categoria | Descrição / Título |
 |-------|-----------|-------------------|

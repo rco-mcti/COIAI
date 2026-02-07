@@ -1,0 +1,102 @@
+projeto: SETEC - Lei do Bem (FormAnálise e FormPD)
+siglas:
+  temas:
+  - id: T01
+    nome: '[MCTI – Lei do Bem – FormPD] - Gestão do Preenchimento do Formulário'
+  - id: T02
+    nome: '[MCTI – Lei do Bem – FormAnálise] – Gestão da Permissão e Acesso ao Diagnóstico
+      Opinativo'
+  - id: T03
+    nome: '[MCTI – Lei do Bem – FormAnálise] – Gestão da Permissão de acesso aos Pareceres'
+  - id: T04
+    nome: '[MCTI – Lei do Bem – FormAnálise] – Gestão da Permissão de acesso aos dados
+      da Empresa'
+  - id: T05
+    nome: '[MCTI – Lei do Bem – FormAnálise] – Gestão da Permissão de acesso às Petições'
+  - id: T06
+    nome: '[MCTI – Lei do Bem – FormAnálise] – Gestão da Importação do Formulário
+      para o ambiente de Análise'
+  epicos:
+  - id: E01
+    nome: Declarar dispêndio com pesquisador Exclusivo
+  - id: E02
+    nome: Cadastrar Incentivos Fiscais
+  - id: E03
+    nome: Cadastrar Dispêndio do Programa
+  - id: E04
+    nome: Finalizar preenchimento do Formulário
+  - id: E05
+    nome: Solicitar Preencher Formulário
+  - id: E06
+    nome: Elaborar Diagnóstico Opinativo
+  - id: E07
+    nome: Elaborar Pareceres
+  - id: E08
+    nome: Dados da Empresa
+  - id: E09
+    nome: Elaborar Petição
+  - id: E10
+    nome: Importar dados do FormPD
+  features:
+  - id: F01
+    nome: Editar Item de Pesquisador Exclusivo
+  - id: F02
+    nome: Editar item de incentivos fiscais do Programa
+  - id: F03
+    nome: Editar Item de Patentes e Registros
+  - id: F04
+    nome: Identificar Projeto
+  - id: F05
+    nome: Recuperar informações do formulário do ano-base anterior
+  - id: F06
+    nome: Consultar Tarefa 'Elaborar Diagnóstico Opinativo do Projeto'
+  - id: F07
+    nome: Consultar Tarefa 'Elaborar Diagnóstico Opinativo da Contestação'
+  - id: F08
+    nome: Consultar Tarefa 'Elaborar Diagnóstico Opinativo do Recurso Administrativo'
+  - id: F09
+    nome: Visualizar Parecer Técnico
+  - id: F10
+    nome: Visualizar Parecer de Contestação
+  - id: F11
+    nome: Visualizar Parecer do Recurso Administrativo
+  - id: F12
+    nome: Visualizar Justificativa do Parecer Técnico
+  - id: F13
+    nome: Visualizar Justificativa do Parecer de contestação
+  - id: F14
+    nome: Visualizar Justificativa do Parecer do Recurso Administrativo
+  - id: F15
+    nome: Visualizar Documento de Parecer Técnico
+  - id: F16
+    nome: Visualizar Documento de Parecer de Contestação
+  - id: F17
+    nome: Visualizar Diagnóstico Opinativo de Projeto
+  - id: F18
+    nome: Visualizar Diagnóstico Opinativo da Contestação
+  - id: F19
+    nome: Visualizar Diagnóstico Opinativo do Recurso Administrativo
+  - id: F20
+    nome: Visualizar documento de Petição 'Apresentar Contestação'
+  - id: F21
+    nome: Visualizar documento de Petição 'Recurso Administrativo'
+  - id: F22
+    nome: Visualizar dados da Empresa
+  - id: F23
+    nome: Filtrar dados da Empresa
+  - id: F24
+    nome: Exportar dados da Empresa
+  - id: F25
+    nome: Visualizar Diagnóstico Opinativo do Projeto
+  - id: F26
+    nome: Visualizar Diagnóstico Opinativo da Contestação
+  - id: F27
+    nome: Visualizar Diagnóstico Opinativo do Recurso Administrativo
+  - id: F28
+    nome: Visualizar documento de Petição 'Apresentar Contestação'
+  - id: F29
+    nome: Visualizar documento de Petição 'Recurso Administrativo'
+  - id: F30
+    nome: Importar dados do FormPD para o FormAnálise
+  - id: F31
+    nome: Visualizar Parecer Conclusivo
