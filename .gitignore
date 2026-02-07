@@ -1,0 +1,8 @@
+*.pdf
+*.xlsx
+*.docx
+*.pptx
+*.log
+*.tmp
+
+**/temp/
