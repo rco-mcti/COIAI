@@ -1,19 +1,32 @@
-# [HU{NumeroDaHU}]: Nome/titulo da HU
+# [HU{NumeroDaHU}]: {TituloDaHU}
 
-## introdução
+## 📝 Introdução
+> Breve descrição do contexto e objetivo desta User Story.
 
-## identificação do Projeto
-Projeto
-Requisitante e Gerente de Projeto
-Tema
-Épico
-Feature
-Nome HU
+## 🆔 Identificação
+| Campo | Descrição |
+| :--- | :--- |
+| **Projeto** | [Nome do Projeto] |
+| **Requisitante** | [Nome / Departamento] |
+| **Tema** | [Tema Principal] |
+| **Épico** | [Link/Nome do Épico] |
+| **Feature** | [Link/Nome da Feature] |
 
-## Descrição 
+## 📖 Descrição (User Story)
+**Como** [tipo de usuário]
+**Eu quero** [realizar uma ação]
+**Para que** [obter um benefício]
 
+## 📋 Critérios de Aceite
+- [ ] Critério 1
+- [ ] Critério 2
 
+## ⚖️ Regras de Negócio
+- [RN01] Descrição da regra...
 
-## Referencia
+## 🎨 Protótipos e UX
+- [Link do Figma ou Screenshot]
+
+## 🔗 Referências
 - [Caminho da pasta da rede](#)
-- [referencias extras](#)
+- [Outras referências](#)
