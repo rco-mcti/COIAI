@@ -5,7 +5,7 @@
 
 O processo de gestão segue um pipeline estruturado com 7 etapas que garantem a qualidade e rastreabilidade das entregas:
 
-### 1. **Análise** 
+### 1. **No Status** 
 Etapa inicial de refinamento onde as Histórias de Usuário (HUs) são discutidas internamente pela equipe COIAI. Nesta fase, são avaliados requisitos, viabilidade técnica, impacto no negócio e priorização das demandas antes de serem encaminhadas para validação.
 
 ### 2. **Aguardando Análise**
