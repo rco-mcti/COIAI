@@ -1,4 +1,12 @@
-# [HU{NumeroDaHU}]: {TituloDaHU}
+---
+name: "02 - User Story (HU)"
+about: "Template padrão para criação de histórias de usuário (HU)."
+title: "[HU{Numero}]: Título da HU"
+labels: ["HU", "E01"]
+projects: ["rco-mcti/1"]
+---
+
+# [HU{Numero}]: {TituloDaHU}
 
 ## 📝 Introdução
 > Breve descrição do contexto e objetivo desta User Story.

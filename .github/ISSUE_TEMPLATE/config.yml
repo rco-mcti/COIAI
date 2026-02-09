@@ -1,17 +1,17 @@
 blank_issues_enabled: false
 contact_links:
-  - name: "FormPD - MCTI"
+  - name: "🚀 FormPD - MCTI"
     url: https://formpd.mcti.gov.br/empresas/representante
-    about: Para preenchimento dos formulários de PD&I pelas empresas.
-
-  - name: "FormAnálise - MCTI"
+    about: Preenchimento de formulários de PD&I pelas empresas.
+  
+  - name: "🔍 FormAnálise - MCTI"
     url: https://mcti.gov.br/
-    about: Para acessar análise técnica dos formulários e emissão de pareceres.
+    about: Análise técnica de formulários e emissão de pareceres.
 
-  - name: "Pasta da Rede COIAI"
+  - name: "📂 Pasta da Rede COIAI"
     url: "file://P:/COIAI/Gestão de Dados"
-    about: Acesso direto à pasta de rede para documentos de gestão e histórico.
+    about: Acesso direto a documentos de gestão e histórico na rede.
 
-  - name: "Portal MCTI"
+  - name: "🏛️ Portal MCTI"
     url: https://www.gov.br/mcti
     about: Site oficial do Ministério da Ciência, Tecnologia e Inovação.
