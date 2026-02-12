@@ -124,6 +124,7 @@ class HuParser:
 | **Épico**               | {self.data['identification'].get('epico', '')} |
 | **Feature**             | {self.data['identification'].get('feature', '')} |
 
+
 ## 📖 Descrição (User Story)
 {self.data['user_story']}
 
@@ -177,7 +178,8 @@ def process_file(filepath, dry_run=False):
             print(f"🔍 [DRY-RUN] Labels: {labels}")
             print(f"🔍 [DRY-RUN] Assignee: {ASSIGNEE}")
             print(f"🔍 [DRY-RUN] Project: {GITHUB_PROJECT_ID}")
-            print(f"🔍 [DRY-RUN] Corpo da Issue:\n{body}")
+            # print(f"🔍 [DRY-RUN] Corpo da Issue:\n{body}") 
+            # Commented out body print to reduce noise, unless debugging
             
             # Simulate update check if possible, or just print intent
             # For dry-run, we might not know if it exists unless we actually query (which is safe read-only)
