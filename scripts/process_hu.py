@@ -241,9 +241,14 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Run without creating issues on GitHub, printing output instead.")
     args = parser.parse_args()
 
-    files = glob.glob("temp/*.docx")
+    # Search recursively for .docx files in the current directory and subdirectories
+    files = glob.glob("**/*.docx", recursive=True)
+    
+    # Filter out temporary/hidden files or system directories if needed
+    files = [f for f in files if not any(part.startswith('.') for part in f.split(os.sep))]
+
     if not files:
-        print("Nenhum arquivo .docx encontrado em temp/")
+        print("Nenhum arquivo .docx encontrado no repositório.")
         return
 
     print(f"Encontrados {len(files)} arquivos para processar.")
