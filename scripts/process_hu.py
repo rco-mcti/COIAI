@@ -72,21 +72,20 @@ class HuParser:
                 
                 if len(cells) >= 2 and is_valid_key:
                     key = key_candidate
-                    value = cells[1]
+                    value = cells[1].replace('\n', '<br>')
                     last_key = key # Remember the key for continuation
                 elif last_key:
-                    # Treat as continuation if it's not a valid key (regardless of cell count)
-                    # or if we have only 1 cell which is not a valid key
-                    value = " ".join(cells) # Join all cells in the row
+                    # Treat as continuation
+                    value = " ".join(cells).replace('\n', '<br>')
                     key = last_key
                     
-                    # Append to existing value in data
-                    if "gerente" in key: self.data["identification"]["gerente"] += " " + value
-                    elif "projeto" in key: self.data["identification"]["projeto"] += " " + value
-                    elif "requisitante" in key: self.data["identification"]["requisitante"] += " " + value
-                    elif "tema" in key: self.data["identification"]["tema"] += " " + value
-                    elif "épico" in key or "epico" in key: self.data["identification"]["epico"] += " " + value
-                    elif "feature" in key: self.data["identification"]["feature"] += " " + value
+                    # Append to existing value in data with <br>
+                    if "gerente" in key: self.data["identification"]["gerente"] += "<br>" + value
+                    elif "projeto" in key: self.data["identification"]["projeto"] += "<br>" + value
+                    elif "requisitante" in key: self.data["identification"]["requisitante"] += "<br>" + value
+                    elif "tema" in key: self.data["identification"]["tema"] += "<br>" + value
+                    elif "épico" in key or "epico" in key: self.data["identification"]["epico"] += "<br>" + value
+                    elif "feature" in key: self.data["identification"]["feature"] += "<br>" + value
                     continue # Skip the standard assignment below
                 else:
                     continue
