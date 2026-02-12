@@ -34,12 +34,8 @@ jobs:
           pip install python-docx
 
       - name: Run script
-        env:
-          # Use a Personal Access Token (PAT) if available for Project access, otherwise default GITHUB_TOKEN
-          # Create a secret named GH_PAT with repo and project scopes
-          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
-          # If the user has a specific Project Token, they should use it:
-          # GH_TOKEN: ${{ secrets.PROJECT_TOKEN }} 
+        GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
         run: |
+          python scripts/cleanup_issues_v2.py --delete --pattern "[HU"
           python scripts/process_hu.py
 ```
