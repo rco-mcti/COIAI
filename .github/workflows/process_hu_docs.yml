@@ -34,8 +34,8 @@ jobs:
           pip install python-docx
 
       - name: Run script
-        GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
         run: |
           python scripts/cleanup_issues_v2.py --delete --pattern "[HU"
           python scripts/process_hu.py
-```
