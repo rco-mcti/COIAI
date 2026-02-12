@@ -1,0 +1,42 @@
+name: Process HU Documents
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'temp/**.docx'
+
+permissions:
+  issues: write
+  contents: read
+  repository-projects: write # Needed for project items (classic)
+  # For new Projects (beta/V2), a classic PAT or App token might be needed if GITHUB_TOKEN has scope limitations.
+  # But assuming usage within same org context often works. 
+  # If "Project V2" (memex), GITHUB_TOKEN might not be enough for "write". 
+  # User mentioned "rco-mcti/1" which looks like a V2 project number or a classic project ID.
+  # We will try with GITHUB_TOKEN first.
+
+jobs:
+  process-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install python-docx
+
+      - name: Process HU Files
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # If the user has a specific Project Token, they should use it:
+          # GH_TOKEN: ${{ secrets.PROJECT_TOKEN }} 
+        run: |
+          python scripts/process_hu.py
