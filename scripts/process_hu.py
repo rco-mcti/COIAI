@@ -45,10 +45,12 @@ class HuParser:
             for row in table.rows[1:]:
                 cells = [c.text.strip() for c in row.cells]
                 if len(cells) >= 4:
+                    # Replace newlines in description with <br> to keep table format
+                    description = cells[2].replace('\n', '<br>')
                     self.data["revisions"].append({
                         "version": cells[0],
                         "date": cells[1],
-                        "description": cells[2],
+                        "description": description,
                         "author": cells[3]
                     })
 
