@@ -198,9 +198,7 @@ def process_file(filepath, dry_run=False):
             update_cmd = [
                 "gh", "issue", "edit", str(existing_number),
                 "--title", title,
-                "--body", body,
-                "--add-project", GITHUB_PROJECT_ID 
-                # Note: edit --add-project helps ensure it's in the project if it wasn't
+                "--body", body
             ]
             if labels:
                 update_cmd.extend(["--add-label", labels])
@@ -209,8 +207,11 @@ def process_file(filepath, dry_run=False):
                 subprocess.run(update_cmd, check=True, capture_output=True, text=True)
                 print(f"✅ Issue #{existing_number} atualizada com sucesso.")
             except subprocess.CalledProcessError as e:
-                print(f"❌ Erro ao atualizar issue #{existing_number}: {e.stderr}")
+                print(f"❌ Erro ao atualizar issue #{existing_number}: {e}")
+                if e.stderr: print(f"🔍 Detalhes: {e.stderr}")
             
+            # Ensure it is in the project
+            add_to_project(existing_number)
             return
 
         # Create Issue
@@ -219,20 +220,21 @@ def process_file(filepath, dry_run=False):
             "gh", "issue", "create",
             "--title", title,
             "--body", body,
-            "--body", body,
-            # "--assignee", ASSIGNEE, # Removed to avoid errors if OWNER is an Org
-            "--project", GITHUB_PROJECT_ID
+            # "--assignee", ASSIGNEE, # Removed
+            # "--project", GITHUB_PROJECT_ID # Removed to handle V2 separately
         ]
         
         if labels:
             create_cmd.extend(["--label", labels])
             
-        # We use subprocess.run with list args for safety with quotes/spaces in body
         result = subprocess.run(create_cmd, check=True, capture_output=True, text=True)
+        # Output of create is the URL, e.g. https://github.com/owner/repo/issues/123
         new_issue_url = result.stdout.strip()
         print(f"✅ Issue criada: {new_issue_url}")
         
-        print("ℹ️ Issue atribuída ao projeto. Verifique se caiu na coluna correta (Backlog).")
+        # Extract number from URL
+        new_number = new_issue_url.split('/')[-1]
+        add_to_project(new_number)
         
     except subprocess.CalledProcessError as e:
         print(f"❌ Erro ao processar {filepath}: {e}")
@@ -240,6 +242,24 @@ def process_file(filepath, dry_run=False):
             print(f"🔍 Detalhes do erro (stderr): {e.stderr}")
     except Exception as e:
         print(f"❌ Erro inesperado ao processar {filepath}: {e}")
+
+def add_to_project(issue_number):
+    print(f"🗂 Adicionando issue #{issue_number} ao projeto {PROJECT_NUMBER} do usuário {OWNER}...")
+    try:
+        # gh project item-add <project-number> --owner <owner> --url <issue-url>
+        issue_url = f"https://github.com/{OWNER}/{REPO}/issues/{issue_number}"
+        
+        cmd = [
+            "gh", "project", "item-add", str(PROJECT_NUMBER),
+            "--owner", OWNER,
+            "--url", issue_url
+        ]
+        
+        subprocess.run(cmd, check=True, capture_output=True, text=True)
+        print("✅ Adicionada ao projeto com sucesso.")
+    except subprocess.CalledProcessError as e:
+        print(f"⚠️ Aviso: Não foi possível adicionar ao projeto. Verifique permissões/ID. Erro: {e}")
+        if e.stderr: print(f"🔍 Detalhes: {e.stderr}")
 
 def main():
     parser = argparse.ArgumentParser(description="Process HU DOCX files and create GitHub Issues.")
