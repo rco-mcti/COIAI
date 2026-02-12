@@ -1,30 +1,36 @@
 ---
-name: "02 - História do Usuário"
+name: "História do Usuário"
 about: "Template padrão para criação de histórias de usuário (HU)."
 title: "[HU]: "
-labels: ["HU"]
+labels: [""]
 projects: ["rco-mcti/1"]
 ---
 
-# [HU{Numero}]: {TituloDaHU}
-
-## 📝 Introdução
-> Breve descrição do contexto e objetivo desta User Story.
+## 📝 Histórico de Revisões
+| Campo         | Descrição |
+| :------------ | :-------- |
+| **Versão**    |           |
+| **Data**      |           |
+| **Descrição** |           |
+| **Autor**     |           |
 
 ## 🆔 Identificação
-| Campo | Descrição |
-| :--- | :--- |
-| **Projeto**          | [Nome do Projeto]     |
-| **Requisitante**     | [Nome / Departamento]  |
-| **Tema**             | [Tema Principal]       |
-| **Épico**            | [Link/Nome do Épico]   |
-| **Feature**          | [Link/Nome da Feature] |
+| Campo                   | Descrição |
+| :---------------------- | :-------- |
+| **Projeto**             |           |
+| **Requisitante**        |           |
+| **Gerente de Projetos** |           |
+| **Tema**                |           |
+| **Épico**               |           |
+| **Feature**             |           |
+
 
 ## 📖 Descrição (User Story)
-**Como** [tipo de usuário]
-**Eu quero** [realizar uma ação]
-**Para que** [obter um benefício]
+**Como** 
+  
+**Preciso** 
+
+**Para** 
 
 ## 🔗 Referências
-- [Caminho da pasta da rede](#)
-- [Outras referências](#)
+- 
