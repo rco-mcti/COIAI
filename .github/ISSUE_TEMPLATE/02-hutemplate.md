@@ -2,8 +2,10 @@
 name: "História do Usuário"
 about: "Template padrão para criação de histórias de usuário (HU)."
 title: "[HU]: "
-labels: [""]
+labels: ["HU"]
+assignees: ["rco-mcti"]
 projects: ["rco-mcti/1"]
+status: "Backlog"
 ---
 
 ## 📝 Histórico de Revisões
