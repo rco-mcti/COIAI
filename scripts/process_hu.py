@@ -58,6 +58,7 @@ class HuParser:
         if len(self.doc.tables) > 1:
             table = self.doc.tables[1]
             last_key = None
+            valid_keys = ["projeto", "requisitante", "gerente", "tema", "épico", "epico", "feature", "campo"]
             
             for row in table.rows:
                 # Get text from cells, filter empty
@@ -66,24 +67,25 @@ class HuParser:
                 if not cells:
                     continue
                 
-                # If we have 2 cells, it's typically Key | Value
-                # But sometimes it's Key | Value (and Value is multiline split)
-                # If python-docx sees it as separate rows (e.g. nested table or merged cells issue):
+                key_candidate = cells[0].lower()
+                is_valid_key = any(vk in key_candidate for vk in valid_keys)
                 
-                if len(cells) >= 2:
-                    key = cells[0].lower()
+                if len(cells) >= 2 and is_valid_key:
+                    key = key_candidate
                     value = cells[1]
                     last_key = key # Remember the key for continuation
-                elif len(cells) == 1 and last_key:
-                    # It might be a continuation of the previous value (broken row)
-                    value = cells[0]
+                elif last_key:
+                    # Treat as continuation if it's not a valid key (regardless of cell count)
+                    # or if we have only 1 cell which is not a valid key
+                    value = " ".join(cells) # Join all cells in the row
                     key = last_key
+                    
                     # Append to existing value in data
                     if "gerente" in key: self.data["identification"]["gerente"] += " " + value
                     elif "projeto" in key: self.data["identification"]["projeto"] += " " + value
                     elif "requisitante" in key: self.data["identification"]["requisitante"] += " " + value
                     elif "tema" in key: self.data["identification"]["tema"] += " " + value
-                    elif "épico" in key: self.data["identification"]["epico"] += " " + value
+                    elif "épico" in key or "epico" in key: self.data["identification"]["epico"] += " " + value
                     elif "feature" in key: self.data["identification"]["feature"] += " " + value
                     continue # Skip the standard assignment below
                 else:
@@ -96,7 +98,7 @@ class HuParser:
                 elif "tema" in key: 
                     self.data["identification"]["tema"] = value
                     self._extract_label(value)
-                elif "épico" in key: 
+                elif "épico" in key or "epico" in key: 
                     self.data["identification"]["epico"] = value
                     self._extract_label(value)
                 elif "feature" in key: 
