@@ -176,15 +176,13 @@ def main():
             
             title = f"[HU{hu_parser.hu_id}]: {hu_parser.data['title']}"
             
-            # Check existence only if not dry-run or if we want to simulate properly (requires GH CLI)
-            if not args.dry_run:
-                existing_number = issue_exists(title)
-                if existing_number:
-                    print(f"⚠️ Issue já existe: #{existing_number} - {title}. Pulando...")
-                    continue
-            
             body = hu_parser.generate_body()
             labels = ",".join(hu_parser.data['labels']) if hu_parser.data['labels'] else ""
+
+            # Check existence only if not dry-run or if we want to simulate properly (requires GH CLI)
+            existing_number = None
+            if not args.dry_run:
+                existing_number = issue_exists(title)
             
             if args.dry_run:
                 print(f"🔍 [DRY-RUN] Título: {title}")
@@ -192,8 +190,38 @@ def main():
                 print(f"🔍 [DRY-RUN] Assignee: {ASSIGNEE}")
                 print(f"🔍 [DRY-RUN] Project: {GITHUB_PROJECT_ID}")
                 print(f"🔍 [DRY-RUN] Corpo da Issue:\n{body}")
+                
+                # Simulate update check if possible, or just print intent
+                # For dry-run, we might not know if it exists unless we actually query (which is safe read-only)
+                # Let's query even in dry-run to show what WOULD happen (Create vs Update)
+                existing_number_dry = issue_exists(title)
+                if existing_number_dry:
+                     print(f"🔍 [DRY-RUN] Issue #{existing_number_dry} já existe. Seria ATUALIZADA.")
+                else:
+                     print(f"🔍 [DRY-RUN] Issue não existe. Seria CRIADA.")
+                
                 print("-" * 40)
                 continue
+
+            if existing_number:
+                print(f"🔄 Issue já existe: #{existing_number}. Atualizando...")
+                update_cmd = [
+                    "gh", "issue", "edit", str(existing_number),
+                    "--title", title,
+                    "--body", body,
+                    "--add-project", GITHUB_PROJECT_ID 
+                    # Note: edit --add-project helps ensure it's in the project if it wasn't
+                ]
+                if labels:
+                    update_cmd.extend(["--add-label", labels])
+                
+                try:
+                    subprocess.run(update_cmd, check=True, capture_output=True, text=True)
+                    print(f"✅ Issue #{existing_number} atualizada com sucesso.")
+                except subprocess.CalledProcessError as e:
+                    print(f"❌ Erro ao atualizar issue #{existing_number}: {e.stderr}")
+                
+                continue 
 
             # Create Issue
             print(f"🚀 Criando issue: {title}")
