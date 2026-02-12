@@ -219,7 +219,8 @@ def process_file(filepath, dry_run=False):
             "gh", "issue", "create",
             "--title", title,
             "--body", body,
-            "--assignee", ASSIGNEE,
+            "--body", body,
+            # "--assignee", ASSIGNEE, # Removed to avoid errors if OWNER is an Org
             "--project", GITHUB_PROJECT_ID
         ]
         
@@ -233,8 +234,12 @@ def process_file(filepath, dry_run=False):
         
         print("ℹ️ Issue atribuída ao projeto. Verifique se caiu na coluna correta (Backlog).")
         
-    except Exception as e:
+    except subprocess.CalledProcessError as e:
         print(f"❌ Erro ao processar {filepath}: {e}")
+        if e.stderr:
+            print(f"🔍 Detalhes do erro (stderr): {e.stderr}")
+    except Exception as e:
+        print(f"❌ Erro inesperado ao processar {filepath}: {e}")
 
 def main():
     parser = argparse.ArgumentParser(description="Process HU DOCX files and create GitHub Issues.")
