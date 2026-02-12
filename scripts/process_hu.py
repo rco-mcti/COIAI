@@ -55,24 +55,51 @@ class HuParser:
     def _parse_identification(self):
         if len(self.doc.tables) > 1:
             table = self.doc.tables[1]
+            last_key = None
+            
             for row in table.rows:
-                if len(row.cells) >= 2:
-                    key = row.cells[0].text.strip().lower()
-                    value = row.cells[1].text.strip()
-                    
-                    if "gerente" in key: self.data["identification"]["gerente"] = value
-                    elif "projeto" in key: self.data["identification"]["projeto"] = value
-                    elif "requisitante" in key: self.data["identification"]["requisitante"] = value
-                    
-                    elif "tema" in key: 
-                        self.data["identification"]["tema"] = value
-                        self._extract_label(value)
-                    elif "épico" in key: 
-                        self.data["identification"]["epico"] = value
-                        self._extract_label(value)
-                    elif "feature" in key: 
-                        self.data["identification"]["feature"] = value
-                        self._extract_label(value)
+                # Get text from cells, filter empty
+                cells = [c.text.strip() for c in row.cells if c.text.strip()]
+                
+                if not cells:
+                    continue
+                
+                # If we have 2 cells, it's typically Key | Value
+                # But sometimes it's Key | Value (and Value is multiline split)
+                # If python-docx sees it as separate rows (e.g. nested table or merged cells issue):
+                
+                if len(cells) >= 2:
+                    key = cells[0].lower()
+                    value = cells[1]
+                    last_key = key # Remember the key for continuation
+                elif len(cells) == 1 and last_key:
+                    # It might be a continuation of the previous value (broken row)
+                    value = cells[0]
+                    key = last_key
+                    # Append to existing value in data
+                    if "gerente" in key: self.data["identification"]["gerente"] += " " + value
+                    elif "projeto" in key: self.data["identification"]["projeto"] += " " + value
+                    elif "requisitante" in key: self.data["identification"]["requisitante"] += " " + value
+                    elif "tema" in key: self.data["identification"]["tema"] += " " + value
+                    elif "épico" in key: self.data["identification"]["epico"] += " " + value
+                    elif "feature" in key: self.data["identification"]["feature"] += " " + value
+                    continue # Skip the standard assignment below
+                else:
+                    continue
+
+                if "gerente" in key: self.data["identification"]["gerente"] = value
+                elif "projeto" in key: self.data["identification"]["projeto"] = value
+                elif "requisitante" in key: self.data["identification"]["requisitante"] = value
+                
+                elif "tema" in key: 
+                    self.data["identification"]["tema"] = value
+                    self._extract_label(value)
+                elif "épico" in key: 
+                    self.data["identification"]["epico"] = value
+                    self._extract_label(value)
+                elif "feature" in key: 
+                    self.data["identification"]["feature"] = value
+                    self._extract_label(value)
 
     def _extract_label(self, text):
         matches = re.findall(r'\b([A-Z]{1,2}\d{2,3})\b', text)
