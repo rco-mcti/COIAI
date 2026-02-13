@@ -230,8 +230,8 @@ def process_file(filepath, dry_run=False):
                 "--title", title,
                 "--body", body
             ]
-            if labels:
-                update_cmd.extend(["--add-label", labels])
+            # if labels:
+            #     update_cmd.extend(["--add-label", labels])
             
             try:
                 subprocess.run(update_cmd, check=True, capture_output=True, text=True)
@@ -254,8 +254,8 @@ def process_file(filepath, dry_run=False):
             # "--project", GITHUB_PROJECT_ID # Removed to handle V2 separately
         ]
         
-        if labels:
-            create_cmd.extend(["--label", labels])
+        # if labels:
+        #     create_cmd.extend(["--label", labels])
             
         result = subprocess.run(create_cmd, check=True, capture_output=True, text=True)
         # Output of create is the URL, e.g. https://github.com/owner/repo/issues/123

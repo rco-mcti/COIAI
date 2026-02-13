@@ -94,12 +94,11 @@ class HuListParser:
                 
             print(f"🚀 Criando issue: {title}")
             
-            # Setup Labels
-            labels = ["HU"]
-            if sprint_val != "?":
-                labels.append(f"Sprint {sprint_val}")
-            
-            labels_str = ",".join(labels)
+            # Labels removed by user request
+            # labels = ["HU"]
+            # if sprint_val != "?":
+            #     labels.append(f"Sprint {sprint_val}")
+            # labels_str = ",".join(labels)
             
             # Corpo simples
             body = (
@@ -113,8 +112,7 @@ class HuListParser:
                 cmd = [
                     'gh', 'issue', 'create',
                     '--title', title,
-                    '--body', body,
-                    '--label', labels_str
+                    '--body', body
                 ]
                 
                 result = subprocess.run(cmd, capture_output=True, text=True, check=True, encoding='utf-8')
