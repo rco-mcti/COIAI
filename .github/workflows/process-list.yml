@@ -40,4 +40,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
         run: |
-            python scripts/main.py --source list --path lista_HU.txt
+            python scripts/main.py --source list --path lista_HU.txt --update

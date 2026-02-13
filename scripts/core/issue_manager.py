@@ -58,7 +58,7 @@ class IssueManager:
                     self.client.update_issue(existing_number, full_title, body)
                     print(f"✅ Issue #{existing_number} atualizada.")
                 else:
-                    print(f"⏭️ Issue já existe: #{existing_number}. Pualando atualização (use --update para forçar).")
+                    print(f"⏭️ Issue já existe: #{existing_number}. Pulando atualização (use --update para forçar).")
                 
                 if self._project_access: # Add to project anyway? Or only if updated? Usually safe to add anyway to ensure it's on board
                     self.client.add_to_project(existing_number, project_num, project_owner, "COIAI")
