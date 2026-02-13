@@ -1,0 +1,49 @@
+name: Process List to Issues
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'lista_HU.txt'
+
+permissions:
+  issues: write
+  contents: write
+  repository-projects: write
+
+jobs:
+  process-list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install git-filter-repo
+
+      - name: Run List Processor (Create Issues)
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+        run: |
+            python scripts/listar_hus.py lista_HU.txt --create
+
+      - name: Clean Git History (Remove DOCX/PDF)
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git filter-repo --path-glob '*.docx' --path-glob '*.pdf' --invert-paths --force
+          git remote add origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
+          git push origin --force --all || echo "No changes to push"
+          git push origin --force --tags || echo "No tags to push"
