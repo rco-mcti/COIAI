@@ -9,3 +9,12 @@ HU103 - Analisar dispêndios do projeto considerando as 2 análises anteriores (
 HU104 - Analisar observações gerais considerando as 2 análises anteriores (3ª analise)
 HU105 - Apresentar pdf com indicação da 3° análise
 HU106 - Gerar D.O. consolidado da empresa contendo até 3 análises
+
+História de Usuário sprint 7 
+HU91-Implementar a funcionalidade de importação de dados via planilha da seção Universidade/Instituição de Pesquisados
+HU92 - Implementar a funcionalidade de importação de dados via planilha da seção Inventor Independente - Contratado /Valores Transferidos
+HU93 - Implementar a funcionalidade de importação de dados via planilha da seção Microempresa/Empresa de Pequeno Porte
+HU94-Implementar a funcionalidade de importação de dados via planilha da seção Serviço de apoio técnico, tecnologia industrial básica e despesas operacionais - Pessoa Física
+HU95 - Implementar a funcionalidade de importação de dados via planilha da seção Serviço de apoio técnico, tecnologia industrial básica e despesas operacionais - Pessoa Jurídica
+HU96 - Implementar a funcionalidade de importação de dados via planilha da seção Material de Consumo
+

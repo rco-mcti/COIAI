@@ -10,10 +10,10 @@ class HuListParser:
     def __init__(self, filepath):
         self.filepath = filepath
         self.hus = []
-        self.sprint = None
+        # Remover self.sprint global ja que agora teremos multiplas
 
     def parse(self):
-        """Lê o arquivo e extrai as HUs baseadas em regex."""
+        """Lê o arquivo e extrai as HUs baseadas em regex, detectando a Sprint atual."""
         if not os.path.exists(self.filepath):
             print(f"Erro: Arquivo não encontrado: {self.filepath}")
             return []
@@ -27,21 +27,27 @@ class HuListParser:
             # Regex para capturar Sprint (ex: "Sprint 6", "(Sprint 6)")
             pattern_sprint = re.compile(r'Sprint\s+(\d+)', re.IGNORECASE)
 
+            current_sprint = "?"
+
             for line in lines:
                 line = line.strip()
                 
-                # Check for Sprint if not found yet
-                if not self.sprint:
-                    match_sprint = pattern_sprint.search(line)
-                    if match_sprint:
-                        self.sprint = match_sprint.group(1)
+                # Check for Sprint header
+                match_sprint = pattern_sprint.search(line)
+                if match_sprint:
+                    current_sprint = match_sprint.group(1)
+                    continue
 
                 match_hu = pattern_hu.match(line)
                 if match_hu:
                     hu_number = int(match_hu.group(1)) # Pega o número
                     hu_id = f"HU{hu_number:03d}"   # Formata com 3 dígitos (ex: HU076)
                     description = match_hu.group(2).strip()
-                    self.hus.append({'id': hu_id, 'description': description})
+                    self.hus.append({
+                        'sprint': current_sprint,
+                        'id': hu_id, 
+                        'description': description
+                    })
             
             return self.hus
 
@@ -55,12 +61,11 @@ class HuListParser:
             print("Nenhuma HU encontrada.")
             return
 
-        sprint_val = self.sprint if self.sprint else "?"
+        # Header solicitado
+        print("Sprint ; HU ; Título")
         
-        # O usuário pediu: sprint ; NUMERO HU ; TITULO DA HU
-        # Ex: 6 ; HU076 ; Titulo
         for hu in self.hus:
-            print(f"{sprint_val} ; {hu['id']} ; {hu['description']}")
+            print(f"{hu['sprint']} ; {hu['id']} ; {hu['description']}")
         
         print(f"-------------------------------------------")
         print(f"Total: {len(self.hus)}")
