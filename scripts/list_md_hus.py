@@ -50,22 +50,24 @@ class HuListParser:
             return []
 
     def print_hus(self):
-        """Imprime as HUs encontradas no console."""
-        sprint_info = f" (Sprint {self.sprint})" if self.sprint else ""
-        print(f"--- HUs encontradas em '{self.filepath}'{sprint_info} ---")
-        
+        """Imprime as HUs encontradas no console formatadas como CSV."""
         if not self.hus:
             print("Nenhuma HU encontrada.")
             return
 
+        sprint_val = self.sprint if self.sprint else "?"
+        
+        # O usuário pediu: sprint ; NUMERO HU ; TITULO DA HU
+        # Ex: 6 ; HU076 ; Titulo
         for hu in self.hus:
-            print(f"[{hu['id']}] {hu['description']}")
+            print(f"{sprint_val} ; {hu['id']} ; {hu['description']}")
+        
         print(f"-------------------------------------------")
         print(f"Total: {len(self.hus)}")
 
 if __name__ == "__main__":
     # Caminho padrão ou argumento
-    target_file = "novas_HUs.md"
+    target_file = "lista_HU.txt"
     if len(sys.argv) > 1:
         target_file = sys.argv[1]
     
