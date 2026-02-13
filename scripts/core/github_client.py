@@ -35,6 +35,19 @@ class GithubClient:
             self.logger.warning(f"Failed to check issue existence: {e}")
             return None
 
+    def check_project_access(self, project_number, owner):
+        """Verifica se o projeto existe e é acessível."""
+        cmd = [
+            'gh', 'project', 'view', str(project_number),
+            '--owner', owner,
+            '--format', 'json'
+        ]
+        try:
+            self.run_command(cmd)
+            return True
+        except:
+            return False
+
     def create_issue(self, title, body):
         """Cria uma nova issue."""
         cmd = [

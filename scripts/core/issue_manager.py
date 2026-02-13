@@ -41,21 +41,31 @@ class IssueManager:
 
             # Verifica existência pelo ID no título (ex: [HU076])
             existing_number = self.client.issue_exists(f"[{hu_id}]")
+            
+            # Verificação de projeto (Cache simples para evitar chamadas repetidas)
+            project_num = 1
+            project_owner = "rco-mcti"
+            if not hasattr(self, '_project_access'):
+                self._project_access = self.client.check_project_access(project_num, project_owner)
+                if not self._project_access:
+                    print(f"⚠️ Aviso: Projeto {project_num} não encontrado ou sem permissão em '{project_owner}'. Issues não serão adicionadas ao projeto.")
 
             if existing_number:
-                print(f"🔄 Issue já existe: #{existing_number}. Atualizando...")
+                print(f"🔄 Issue já existe: #{existing_number} - {full_title}. Atualizando...")
                 self.client.update_issue(existing_number, full_title, body)
                 print(f"✅ Issue #{existing_number} atualizada.")
-                self.client.add_to_project(existing_number, 1, "rco-mcti", "COIAI")
+                
+                if self._project_access:
+                    self.client.add_to_project(existing_number, project_num, project_owner, "COIAI")
             else:
                 print(f"🚀 Criando issue: {full_title}")
                 result_url = self.client.create_issue(full_title, body)
                 print(f"✅ Issue criada: {result_url}")
                 
                 # Extrair número da URL
-                if result_url:
+                if result_url and self._project_access:
                     try:
                         new_number = result_url.split('/')[-1]
-                        self.client.add_to_project(new_number, 1, "rco-mcti", "COIAI")
+                        self.client.add_to_project(new_number, project_num, project_owner, "COIAI")
                     except:
                         print("⚠️ Não foi possível extrair número da issue para adicionar ao projeto.")
