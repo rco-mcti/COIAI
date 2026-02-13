@@ -33,10 +33,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
           pip install git-filter-repo
 
       - name: Run List Processor (Create Issues)
         env:
           GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
         run: |
-          python scripts/listar_hus.py lista_HU.txt --create
+            python scripts/main.py --source list --path lista_HU.txt

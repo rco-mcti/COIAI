@@ -1,0 +1,23 @@
+## 📝 Histórico de Revisões
+| Versão | Data | Descrição | Autor |
+| :--- | :--- | :--- | :--- |
+| {{ revisions[-1].version | default('-') }} | {{ revisions[-1].date | default('-') }} | {{ revisions[-1].description | default('-') }} | {{ revisions[-1].author | default('-') }} |
+
+## 🆔 Identificação
+| Campo | Descrição |
+| :--- | :--- |
+| **Projeto** | {{ identification.projeto | default('-') }} |
+| **Requisitante** | {{ identification.requisitante | default('-') }} |
+| **Gerente de Projetos** | {{ identification.gerente | default('-') }} |
+| **Tema** | {{ identification.tema | default('-') }} |
+| **Épico** | {{ identification.epico | default('-') }} |
+| **Feature** | {{ identification.feature | default('-') }} |
+
+## 📖 {{ title }}
+{{ user_story }}
+
+## 🔗 Referências
+{{ references | default('-') }}
+
+---
+*Gerado automaticamente em {{ generated_at }}*
