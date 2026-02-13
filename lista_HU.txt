@@ -1,20 +1,7 @@
 Histórias de Usuário (Sprint 6)
 HU76 - Disponibilizar função para informar a apuração de lucro na Petição do Recurso Administrativo
-HU97 - Disponibilizar função de consulta na lista suspensa de áreas predominantes
-HU87 - Gerar Diagnóstico Opinativo da Empresa (Análise 1 e 2)
-HU100 - Rodar rotina de comparação do mérito das 2 análises (fechamento do AT)
-HU101 - Criar nova tela para listagem das 3° análises (análise de divergências)
-HU102 - Analisar mérito do projeto considerando as 2 análises anteriores (3ª analise)
-HU103 - Analisar dispêndios do projeto considerando as 2 análises anteriores (3ª analise)
-HU104 - Analisar observações gerais considerando as 2 análises anteriores (3ª analise)
-HU105 - Apresentar pdf com indicação da 3° análise
-HU106 - Gerar D.O. consolidado da empresa contendo até 3 análises
+
 
 História de Usuário sprint 7 
 HU91-Implementar a funcionalidade de importação de dados via planilha da seção Universidade/Instituição de Pesquisados
-HU92 - Implementar a funcionalidade de importação de dados via planilha da seção Inventor Independente - Contratado /Valores Transferidos
-HU93 - Implementar a funcionalidade de importação de dados via planilha da seção Microempresa/Empresa de Pequeno Porte
-HU94-Implementar a funcionalidade de importação de dados via planilha da seção Serviço de apoio técnico, tecnologia industrial básica e despesas operacionais - Pessoa Física
-HU95 - Implementar a funcionalidade de importação de dados via planilha da seção Serviço de apoio técnico, tecnologia industrial básica e despesas operacionais - Pessoa Jurídica
-HU96 - Implementar a funcionalidade de importação de dados via planilha da seção Material de Consumo
 
