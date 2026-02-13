@@ -29,9 +29,17 @@ class IssueManager:
             body = self.template.render(**item)
 
             if self.dry_run:
-                # ... (dry run logic remains mostly same, maybe add log for skip update)
-                # omitting dry run update for brevity of this change, focusing on real logic
-                pass 
+                print(f"🔍 [DRY-RUN] Título: {full_title}")
+                existing_number = self.client.issue_exists(f"[{hu_id}]")
+                if existing_number:
+                    if update_existing:
+                        print(f"🔍 [DRY-RUN] Issue #{existing_number} já existe. Seria ATUALIZADA.")
+                    else:
+                        print(f"🔍 [DRY-RUN] Issue #{existing_number} já existe. Atualização seria PULADA (sem --update).")
+                else:
+                    print(f"🔍 [DRY-RUN] Issue não existe. Seria CRIADA.")
+                print("-" * 30)
+                continue 
 
             # Verifica existência pelo ID no título (ex: [HU076])
             existing_number = self.client.issue_exists(f"[{hu_id}]")
