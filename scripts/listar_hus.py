@@ -1,6 +1,9 @@
 import re
 import os
 import sys
+import argparse
+import subprocess
+import json
 
 class HuListParser:
     """
@@ -10,7 +13,7 @@ class HuListParser:
     def __init__(self, filepath):
         self.filepath = filepath
         self.hus = []
-        # Remover self.sprint global ja que agora teremos multiplas
+        # self.sprint removido, tratado localmente no loop
 
     def parse(self):
         """Lê o arquivo e extrai as HUs baseadas em regex, detectando a Sprint atual."""
@@ -55,6 +58,72 @@ class HuListParser:
             print(f"Erro ao ler arquivo: {e}")
             return []
 
+    def check_issue_exists(self, title_pattern):
+        """Verifica se uma issue com o título já existe."""
+        try:
+            # Busca issues com o título especificado
+            cmd = ['gh', 'issue', 'list', '--search', f'"{title_pattern}"', '--json', 'title,number', '--state', 'all']
+            result = subprocess.run(cmd, capture_output=True, text=True, check=True, encoding='utf-8')
+            issues = json.loads(result.stdout)
+            return len(issues) > 0
+        except Exception as e:
+            print(f"⚠️  Erro ao verificar existência da issue: {e}")
+            return False
+
+    def create_github_issues(self):
+        """Cria as issues no GitHub se não existirem."""
+        if not self.hus:
+            print("Nenhuma HU encontrada para processar.")
+            return
+
+        print(f"--- Iniciando criação de {len(self.hus)} Issues ---")
+        
+        for hu in self.hus:
+            sprint_val = hu['sprint']
+            hu_id = hu['id'] # Ex: HU076
+            description = hu['description']
+            
+            # Formato do Título simplificado para checagem e criação
+            # "[HU076]: Descrição..."
+            title = f"[{hu_id}]: {description}"
+            
+            # Verifica se já existe (busca pelo ID da HU no título para evitar duplicatas mesmo se a descrição mudar levemente)
+            if self.check_issue_exists(f"[{hu_id}]"):
+                print(f"⏭️  Issue já existe (ID encontrado): {hu_id}")
+                continue
+                
+            print(f"🚀 Criando issue: {title}")
+            
+            # Setup Labels
+            labels = ["HU"]
+            if sprint_val != "?":
+                labels.append(f"Sprint {sprint_val}")
+            
+            labels_str = ",".join(labels)
+            
+            # Corpo simples
+            body = (
+                f"**História de Usuário**: {hu_id}\n"
+                f"**Sprint**: {sprint_val}\n"
+                f"**Descrição**: {description}\n\n"
+                f"--- \n*Criado automaticamente via workflow create-issues.*"
+            )
+            
+            try:
+                cmd = [
+                    'gh', 'issue', 'create',
+                    '--title', title,
+                    '--body', body,
+                    '--label', labels_str,
+                    '--assignee', '@me'
+                ]
+                
+                result = subprocess.run(cmd, capture_output=True, text=True, check=True, encoding='utf-8')
+                print(f"✅ Criada com sucesso: {result.stdout.strip()}")
+                
+            except subprocess.CalledProcessError as e:
+                print(f"❌ Falha ao criar issue '{title}': {e.stderr}")
+
     def print_hus(self):
         """Imprime as HUs encontradas no console formatadas como CSV."""
         if not self.hus:
@@ -71,11 +140,16 @@ class HuListParser:
         print(f"Total: {len(self.hus)}")
 
 if __name__ == "__main__":
-    # Caminho padrão ou argumento
-    target_file = "lista_HU.txt"
-    if len(sys.argv) > 1:
-        target_file = sys.argv[1]
+    parser = argparse.ArgumentParser(description="Listar ou Criar HUs a partir de arquivo de texto.")
+    parser.add_argument("file", nargs="?", default="lista_HU.txt", help="Arquivo de entrada")
+    parser.add_argument("--create", action="store_true", help="Criar issues no GitHub")
     
-    parser = HuListParser(target_file)
-    parser.parse()
-    parser.print_hus()
+    args = parser.parse_args()
+    
+    hu_parser = HuListParser(args.file)
+    hu_parser.parse()
+    
+    if args.create:
+        hu_parser.create_github_issues()
+    else:
+        hu_parser.print_hus()
