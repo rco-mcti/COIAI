@@ -1,8 +1,10 @@
 ## 📝 Histórico de Revisões
-| Versão | Data | Descrição | Autor |
-| :--- | :--- | :--- | :--- |
-{%- set last_rev = revisions[-1] if revisions else {} -%}
-| {{ last_rev.version | default('-') }} | {{ last_rev.date | default('-') }} | {{ last_rev.description | default('-') }} | {{ last_rev.author | default('-') }} |
+| Campo | Descrição |
+| :--- | :--- |
+| **Versão** | {{ last_rev.version | default('-') }} |
+| **Data** | {{ last_rev.date | default('-') }} |
+| **Descrição** | {{ last_rev.description | default('-') }} |
+| **Autor** | {{ last_rev.author | default('-') }} |
 
 ## 🆔 Identificação
 | Campo | Descrição |
