@@ -1,7 +1,7 @@
 ## 📝 Histórico de Revisões
 | Versão | Data | Descrição | Autor |
 | :--- | :--- | :--- | :--- |
-{% set last_rev = revisions[-1] if revisions else {} %}
+{%- set last_rev = revisions[-1] if revisions else {} -%}
 | {{ last_rev.version | default('-') }} | {{ last_rev.date | default('-') }} | {{ last_rev.description | default('-') }} | {{ last_rev.author | default('-') }} |
 
 ## 🆔 Identificação
