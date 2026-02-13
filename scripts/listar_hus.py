@@ -114,8 +114,7 @@ class HuListParser:
                     'gh', 'issue', 'create',
                     '--title', title,
                     '--body', body,
-                    '--label', labels_str,
-                    '--assignee', '@me'
+                    '--label', labels_str
                 ]
                 
                 result = subprocess.run(cmd, capture_output=True, text=True, check=True, encoding='utf-8')

@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'lista_HU.txt'
+      - "lista_HU.txt"
 
 permissions:
   issues: write
@@ -15,6 +15,11 @@ jobs:
   process-list:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Bot GitHub Actions
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
       - name: Checkout code
         uses: actions/checkout@v3
         with:
@@ -23,7 +28,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: "3.9"
 
       - name: Install dependencies
         run: |
@@ -34,4 +39,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
         run: |
-            python scripts/listar_hus.py lista_HU.txt --create
+          python scripts/listar_hus.py lista_HU.txt --create
