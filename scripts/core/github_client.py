@@ -6,14 +6,15 @@ class GithubClient:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
 
-    def run_command(self, command):
+    def run_command(self, command, log_error=True):
         """Executa um comando shell e retorna a saída (stdout)."""
         try:
             result = subprocess.run(command, capture_output=True, text=True, check=True, encoding='utf-8')
             return result.stdout.strip()
         except subprocess.CalledProcessError as e:
-            self.logger.error(f"Command failed: {command}")
-            self.logger.error(f"Stderr: {e.stderr}")
+            if log_error:
+                self.logger.error(f"Command failed: {command}")
+                self.logger.error(f"Stderr: {e.stderr}")
             raise e
 
     def issue_exists(self, title_pattern):
@@ -43,7 +44,7 @@ class GithubClient:
             '--format', 'json'
         ]
         try:
-            self.run_command(cmd)
+            self.run_command(cmd, log_error=False)
             return True
         except:
             return False
