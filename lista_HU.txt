@@ -4,3 +4,56 @@
 
 História de Usuário sprint 5
 HU107 - Visualizar tarefas de projeto associadas a diferentes tipos de análise (Resultado Apoio Técnico)
+
+## Histórias de Usuário (Sprint 4)
+HU48 - Alterar fluxo de assinatura do Parecer de Recurso Administrativo
+
+## Histórias de Usuário (Sprint 6)
+HUN - Atualizar campo no FormP&D referente a áreas do projeto  
+HU78 - Disponibilizar função para informar a apuração de lucro na Petição do Recurso Administrativo  
+HU80 - Implementar a funcionalidade de importação de dados via planilha dos dispêndios do Projeto  
+HU85 - Integrar as informações com a Embrapii (fluxo de informação diferenciado) - Fast Track
+
+## Histórias de Usuário (Sprint 7)
+HU03 - Incluir seção/campo para cadastro de Patentes e Registros Solicitados  
+HU28 - Alterar mecanismo de assinatura do Diagnóstico Opinativo de Projeto (assinaturas externas)  
+HU29 - Alterar mecanismo de assinatura do Diagnóstico Opinativo de Contestação (assinaturas externas)  
+HU39 - Incluir consulta dos Diagnósticos Opinativos Individuais de Projeto  
+HU40 - Incluir consulta dos Diagnósticos Opinativos Individuais de Contestação  
+HU41 - Incluir consulta dos Diagnósticos Opinativos Individuais do Recurso  
+HU43 - Alterar fluxo de recurso de glosas em itens de Incentivo Fiscal sem vínculo a projeto/dispêndios  
+HU44 - Alterar fluxo de edição da Petição de Contestação  
+HU45 - Alterar fluxo de edição da Petição de Recurso Administrativo  
+HU47 - Alterar fluxo de visualização do Parecer Conclusivo
+
+## Histórias de Usuário (Sprint 8)
+HU31 - Alterar mecanismo de assinatura da Petição de Contestação (assinaturas externas)  
+HU32 - Alterar mecanismo de assinatura da Petição de Recurso Administrativo (assinaturas externas)  
+HU33 - Alterar mecanismo de assinatura do Parecer Técnico (assinaturas internas)  
+HU34 - Alterar mecanismo de assinatura do Parecer de Contestação (assinaturas internas)  
+HU35 - Alterar mecanismo de assinatura do Parecer do Recurso Administrativo (assinaturas internas)  
+HU53 - Atualizações do FormPD relacionadas à elaboração do Parecer de Contestação  
+HU54 - Automatizar a distribuição de projetos em setor quando não houver categorização por área ou subárea  
+HU64 - Automatizar a distribuição de projetos em setores conforme a área ou subárea selecionda  
+HU79 - Disponibilizar função para adicionar Pesquisador Exclusivo na Petição do Recurso  
+HU82 - Adicionar opção de busca e filtro na listagem de projetos [id único]  
+HU86 - Gestão de pesquisadores
+
+## Histórias de Usuário (Sprint 9999)
+HU05 - Visualizar informações do formulário submetidas no ano-base anterior  
+HU12 - Incluir identificador único do projeto na elaboração do Parecer Técnico  
+HU13 - Incluir identificador único do projeto na elaboração do Parecer de Contestação  
+HU14 - Incluir identificador único do projeto na elaboração do Parecer de Recurso  
+HU15 - Alterar detalhamento das justificativas para não recomendações no Parecer Técnico  
+HU16 - Alterar detalhamento das justificativas para não recomendações no Parecer de Contestação  
+HU23 - Remover contagem de projetos do Parecer Técnico quando total for zero  
+HU27 - Alterar conteúdo do Parecer de Recurso  
+HU36 - Visualizar informações por empresa em ambiente integrado  
+HU37 - Filtrar e personalizar visualizações por empresa  
+HU38 - Exportar informações filtradas por empresa  
+HU46 - Visualizar atualizações do FormPD vinculadas à análise do Mérito do Projeto da tarefa “DO-AT”  
+HU63 - Assinar Diagnóstico de Bens e Equipamentos com base nas atualizações do FormPD relativas à análise do Dispêndio do Programa  
+HU47 - Alterar fluxo de visualização do Parecer Conclusivo  
+HU76 - Automatizar a análise dos Pareceres no caso da empresa lançar "zero reais" nos dispêndios do programa  
+HU77 - Implementar novos filtros nos Pareceres (com glosas e sem glosas)  
+HU83 - Importar automaticamente dados de projetos plurianuais e pesquisadores do ano anterior para evitar retrabalho.
