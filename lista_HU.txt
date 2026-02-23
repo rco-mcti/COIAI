@@ -1,7 +1,6 @@
-Histórias de Usuário (Sprint 6)
-HU76 - Disponibilizar função para informar a apuração de lucro na Petição do Recurso Administrativo
+## MODELO DE ABAIXO DA LISTA
+## Histórias de Usuário (Sprint 6)
+## HU76 - Disponibilizar função para informar a apuração de lucro na Petição do Recurso Administrativo
 
-
-História de Usuário sprint 7 
-HU91-Implementar a funcionalidade de importação de dados via planilha da seção Universidade/Instituição de Pesquisados
-
+História de Usuário sprint 5
+HU107 - Visualizar tarefas de projeto associadas a diferentes tipos de análise (Resultado Apoio Técnico)
