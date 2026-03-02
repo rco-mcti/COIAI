@@ -2,8 +2,11 @@
 ## Histórias de Usuário (Sprint 6)
 ## HU76 - Disponibilizar função para informar a apuração de lucro na Petição do Recurso Administrativo
 
-História de Usuário sprint 1
-HU18 – Alterar o fluxo de geração da conclusão do Parecer Técnico
-HU19 – Alterar o fluxo de geração da conclusão do Parecer de Contestação
-HU21 – Incluir “Nota ao Parecer” nos Pareceres de Contestação
-HU24 – Remover contagem de projetos do Parecer de Contestação quando total for zero
+História de Usuário sprint 4
+HU20 - Gerar Documento Parecer do Recurso Administrativo - Já homologada
+HU52 – Elaborar Parecer Técnico Inicial do Mérito do Projeto
+HU67 – Elaborar Parecer Técnico Inicial dos Dispêndios do Projeto
+HU68 – Elaborar Parecer Técnico Inicial dos Dispêndios do Programa
+HU69 – Elaborar Parecer Técnico Inicial
+HU70 – Elaborar Parecer Técnico Inicial dos Incentivos Fiscais do Programa
+
