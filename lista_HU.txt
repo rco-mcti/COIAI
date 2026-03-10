@@ -2,7 +2,10 @@
 ## Histórias de Usuário (Sprint 6)
 ## HU76 - Disponibilizar função para informar a apuração de lucro na Petição do Recurso Administrativo
 
-História de Usuário sprint 1
-HU01 - Alterar o fluxo de cadastro de "Pesquisador Exclusivo"
-HU02 - Alterar o fluxo de edição dos campos de “Deduções Adicionais”
-HU24 – Remover contagem de projetos do Parecer de Contestação quando total for zero
+História de Usuário sprint 9999
+HU074 - Visualizar documentos dos anos anteriores na Elaboração do Parecer do Recurso Administrativo
+HU073 - Visualizar documentos dos anos anteriores na Elaboração do Parecer Técnico da Contestação
+HU072 - Visualizar Diagnóstico Opinativo da Contestação na Elaboração do Parecer da Contestação
+HU066 - Visualizar Diagnósticos Opinativos na Elaboração do Parecer Técnico
+HU088 - Manter análise do Diagnóstico Opinativo do Projeto na Elaboração do Parecer Técnico
+HU004 - Informar ID único do Projeto no Recibo de Entrega do Formulário
